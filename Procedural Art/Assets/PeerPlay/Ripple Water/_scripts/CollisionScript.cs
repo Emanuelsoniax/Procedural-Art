@@ -18,7 +18,12 @@ public class CollisionScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+        if (Input.GetMouseButtonDown(0))
+        {
+			Ripple(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+
 		for (int i=0; i<8; i++){
 
 			waveAmplitude[i] = GetComponent<Renderer>().material.GetFloat("_WaveAmplitude" + (i+1));
@@ -66,9 +71,9 @@ public class CollisionScript : MonoBehaviour {
 		}
 	}
 
-    private void OnMouseDown()
+    private void Ripple(Vector3 pos)
     {
-		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 mousePos = pos;
 
 		waveNumber++;
 		if (waveNumber == 9)
